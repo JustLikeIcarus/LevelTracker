@@ -1,120 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Munchkin Counter</title>
-    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <!-- Le styles -->
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
-    <style>
-		body {
-        	padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+<head>
+	<meta charset="utf-8">
+	<title>Munchkin Counter</title>
+	<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- Le styles -->
+	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css"
+		rel="stylesheet">
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css"
+		rel="stylesheet">
+	<style>
+		body
+		{
+			padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
 		}
-		#level, #gear, #attack { width:50px; }
-      	ul { list-style-type: none; }
-    </style>
-    
-
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+		#level, #gear, #attack
+		{
+			width: 50px;
+		}
+		ul
+		{
+			list-style-type: none;
+		}
+	</style>
+	<!-- Fav and touch icons -->
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
 	<link rel="shortcut icon" href="../assets/ico/favicon.png">
-  </head>
-
-  <body>
+</head>
+<body>
 	<div class="container">
 		<form>
-        	<ul>
-            	<li class="alert row">
-            		<label>Level</label>
-        			<div class="input-prepend input-append">
-	        			<button class="btn add" id="addLevel" data-bind="click: levelIncrement"><i class="icon icon-plus"></i></button>
-            			<input type="number" class="counter input-mini" id="level" name="level" data-bind="value: level" />
-	        			<button class="btn remove" id="removeLevel" data-bind="click: levelDecrement"><i class="icon icon-minus"></i></button>
-            		</div>
-				</li>
-				<li class="alert row">
-					<label>Gear</label>
-					<div class="input-prepend input-append">
-	        			<button class="btn add" id="addGear" data-bind="click: gearIncrement"><i class="icon icon-plus"></i></button>
-            			<input type="number" class="counter input-mini" id="gear" name="gear" data-bind="value: gear" />
-	        			<button class="btn remove" id="removeGear" data-bind="click: gearDecrement"><i class="icon icon-minus"></i></button>
-            		</div>
-            	</li>
-				<li class="alert row">
-					<label>Attack </label>	        
-					<input type="number" class="input-mini" id="attack" name="attack" data-bind="value: attack" />
-				</li>
-			</ul>
+		<ul>
+			<li class="alert row">
+				<label>
+					Level</label>
+				<div class="input-prepend input-append">
+					<button class="btn add" id="addLevel" data-bind="click: levelIncrement">
+						<i class="icon icon-plus"></i>
+					</button>
+					<input type="number" class="counter input-mini" id="level" name="level" data-bind="value: level" />
+					<button class="btn remove" id="removeLevel" data-bind="click: levelDecrement">
+						<i class="icon icon-minus"></i>
+					</button>
+				</div>
+			</li>
+			<li class="alert row">
+				<label>
+					Gear</label>
+				<div class="input-prepend input-append">
+					<button class="btn add" id="addGear" data-bind="click: gearIncrement">
+						<i class="icon icon-plus"></i>
+					</button>
+					<input type="number" class="counter input-mini" id="gear" name="gear" data-bind="value: gear" />
+					<button class="btn remove" id="removeGear" data-bind="click: gearDecrement">
+						<i class="icon icon-minus"></i>
+					</button>
+				</div>
+			</li>
+			<li class="alert row">
+				<label>
+					Attack
+				</label>
+				<input type="number" class="input-mini" id="attack" name="attack" data-bind="value: attack" />
+			</li>
+		</ul>
 		</form>
 	</div>
-
-    <!-- Le javascript
+	<!-- Le javascript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-<script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
-<script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
-<script type="text/javascript" src="jquery.cookie.js"></script>
-<script type="text/javascript" src="jquery.persist.js"></script>
-<script type="text/javascript">
-function levelTrackerViewModel() {
-	
-	var self = this;
-	self.level = ko.observable(0);
-	self.gear = ko.observable(0);
-	self.attack = ko.computed(function () { return self.level() + self.gear(); });
-	
-	this.levelIncrement = function(data, event) {
-		self.level(self.level() + 1);
-	}
-	
-	this.levelDecrement = function(data, event) {
-		self.level(self.level() > 0 ? self.level() - 1 : 0);
-	}
-	
-	this.gearIncrement = function(data, event) {
-		self.gear(self.gear() + 1);
-	}
-	
-	this.gearDecrement = function(data, event) {
-		self.gear(self.gear() > 0 ? self.gear() - 1 : 0);
-	}
-}
-</script>
-<script type="text/javascript">
-    $(document).ready(function(){
-    	ko.applyBindings(new levelTrackerViewModel());
-    /*$('.add').on('click', function(e){
-        e.preventDefault();
-       var counter = $(this).closest('div').find('.counter');
-        var currentVal = parseInt(counter.val());
-        counter.val(currentVal + 1);
-                    counter.trigger("change");
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
+	<script src="knockout.localStorage.js"></script>
+	<script type="text/javascript">
+		function levelTrackerViewModel() {
 
-    });
-        $('.remove').on('click', function(e){
-                    e.preventDefault();
-       var counter = $(this).closest('div').find('.counter');
-        var currentVal = parseInt(counter.val());
-            counter.val(currentVal > 0 ? currentVal - 1 : 0);
-            counter.trigger("change");
+			var self = this;
+			self.level = ko.observable( 0, { persist: 'levelPersist' } );
+			self.gear = ko.observable( 0, { persist: 'gearPersist' } );
+			self.attack = ko.computed( function () { return self.level() + self.gear(); } );
 
-    });
+			this.levelIncrement = function ( data, event ) {
+				self.level( self.level() + 1 );
+			}
 
-    $('.counter').on('change', function(e){
+			this.levelDecrement = function ( data, event ) {
+				self.level( self.level() > 0 ? self.level() - 1 : 0 );
+			}
 
-        var level = parseInt($('#level').val());
-        var gear = parseInt($('#gear').val());
-        $('#attack').val(level + gear).trigger('change');
-    });*/
-   //$('input').persist();
-});
-    </script>
-  </body>
+			this.gearIncrement = function ( data, event ) {
+				self.gear( self.gear() + 1 );
+			}
+
+			this.gearDecrement = function ( data, event ) {
+				self.gear( self.gear() > 0 ? self.gear() - 1 : 0 );
+			}
+		}
+	</script>
+	<script type="text/javascript">
+		$( document ).ready( function () {
+			ko.applyBindings( new levelTrackerViewModel() );
+			/*$('.add').on('click', function(e){
+			e.preventDefault();
+			var counter = $(this).closest('div').find('.counter');
+			var currentVal = parseInt(counter.val());
+			counter.val(currentVal + 1);
+			counter.trigger("change");
+
+			});
+			$('.remove').on('click', function(e){
+			e.preventDefault();
+			var counter = $(this).closest('div').find('.counter');
+			var currentVal = parseInt(counter.val());
+			counter.val(currentVal > 0 ? currentVal - 1 : 0);
+			counter.trigger("change");
+
+			});
+
+			$('.counter').on('change', function(e){
+
+			var level = parseInt($('#level').val());
+			var gear = parseInt($('#gear').val());
+			$('#attack').val(level + gear).trigger('change');
+			});*/
+			//$('input').persist();
+		} );
+	</script>
+</body>
 </html>
