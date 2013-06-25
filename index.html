@@ -38,6 +38,16 @@
 			vertical-align: middle;
 			padding:4px 12px;
 		}
+		li.well { position: relative; }
+		li.well label {
+			border: 1px solid #E3E3E3;
+    			border-radius: 4px 0 4px 0;
+    			left: -1px;
+    			padding: 3px 7px;
+    			position: absolute;
+    			top: -1px;
+		}
+		.well .counter-container { margin-top: 20px;}
 	</style>
 	<!-- Fav and touch icons -->
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
@@ -60,7 +70,7 @@
 			<li class="well">
 				<label>
 					Level</label>
-				<div>
+				<div class="counter-container">
 					<button class="btn add" id="addLevel" data-bind="click: levelIncrement">
 						<i class="icon icon-plus"></i>
 					</button>
@@ -74,7 +84,7 @@
 			<li class="well">
 				<label>
 					Gear</label>
-				<div>
+				<div class="counter-container">
 					<button class="btn add" id="addGear" data-bind="click: gearIncrement">
 						<i class="icon icon-plus"></i>
 					</button>
@@ -89,8 +99,11 @@
 				<label>
 					Attack
 				</label>
+				<div class="counter-container">
 				<span class="label label-success" data-bind="text: attack"></span>
 				<input type="number" class="input-mini" id="attack" name="attack" data-bind="value: attack" />
+				</div>
+				
 			</li>
 		</ul>
 		</form>
