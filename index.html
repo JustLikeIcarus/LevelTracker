@@ -64,24 +64,26 @@
 <script type="text/javascript" src="jquery.persist.js"></script>
 <script type="text/javascript">
 function levelTrackerViewModel() {
-	this.level = ko.observable(0);
-	this.gear = ko.observable(0);
-	this.attack = ko.computed(function () { return this.level() + this.gear(); });
+	
+	var self = this;
+	self.level = ko.observable(0);
+	self.gear = ko.observable(0);
+	self.attack = ko.computed(function () { return self.level() + self.gear(); });
 	
 	this.levelIncrement = function(data, event) {
-		this.level(this.level() + 1);
+		self.level(self.level() + 1);
 	}
 	
 	this.levelDecrement = function(data, event) {
-		this.level(this.level() > 0 ? this.level() - 1 : 0);
+		self.level(self.level() > 0 ? self.level() - 1 : 0);
 	}
 	
 	this.gearIncrement = function(data, event) {
-		this.gear(this.gear() + 1);
+		self.gear(self.gear() + 1);
 	}
 	
 	this.gearDecrement = function(data, event) {
-		this.gear(this.gear() > 0 ? this.gear() - 1 : 0);
+		self.gear(self.gear() > 0 ? self.gear() - 1 : 0);
 	}
 }
 </script>
