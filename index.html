@@ -46,7 +46,7 @@
 			<li class="alert alert-info">
 				<label>
 					Level</label>
-				<div class="input-prepend input-append">
+				<div>
 					<button class="btn add" id="addLevel" data-bind="click: levelIncrement">
 						<i class="icon icon-plus"></i>
 					</button>
@@ -60,7 +60,7 @@
 			<li class="alert alert-info">
 				<label>
 					Gear</label>
-				<div class="input-prepend input-append">
+				<div>
 					<button class="btn add" id="addGear" data-bind="click: gearIncrement">
 						<i class="icon icon-plus"></i>
 					</button>
@@ -115,30 +115,6 @@
 	<script type="text/javascript">
 		$( document ).ready( function () {
 			ko.applyBindings( new levelTrackerViewModel() );
-			/*$('.add').on('click', function(e){
-			e.preventDefault();
-			var counter = $(this).closest('div').find('.counter');
-			var currentVal = parseInt(counter.val());
-			counter.val(currentVal + 1);
-			counter.trigger("change");
-
-			});
-			$('.remove').on('click', function(e){
-			e.preventDefault();
-			var counter = $(this).closest('div').find('.counter');
-			var currentVal = parseInt(counter.val());
-			counter.val(currentVal > 0 ? currentVal - 1 : 0);
-			counter.trigger("change");
-
-			});
-
-			$('.counter').on('change', function(e){
-
-			var level = parseInt($('#level').val());
-			var gear = parseInt($('#gear').val());
-			$('#attack').val(level + gear).trigger('change');
-			});*/
-			//$('input').persist();
 		} );
 	</script>
 </body>
