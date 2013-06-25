@@ -19,10 +19,17 @@
 		#level, #gear, #attack
 		{
 			width: 50px;
+			display: none;
 		}
 		ul
 		{
 			list-style-type: none;
+		}
+		.alert .label {
+			font-size: 16px;
+			line-height: 16px;
+			vertical-align: middle;
+			padding:4px 12px;
 		}
 	</style>
 	<!-- Fav and touch icons -->
@@ -36,36 +43,39 @@
 	<div class="container">
 		<form>
 		<ul>
-			<li class="alert row">
+			<li class="alert alert-info">
 				<label>
 					Level</label>
 				<div class="input-prepend input-append">
 					<button class="btn add" id="addLevel" data-bind="click: levelIncrement">
 						<i class="icon icon-plus"></i>
 					</button>
+					<span class="label label-success" data-bind="text: level"></span>
 					<input type="number" class="counter input-mini" id="level" name="level" data-bind="value: level" />
 					<button class="btn remove" id="removeLevel" data-bind="click: levelDecrement">
 						<i class="icon icon-minus"></i>
 					</button>
 				</div>
 			</li>
-			<li class="alert row">
+			<li class="alert alert-info">
 				<label>
 					Gear</label>
 				<div class="input-prepend input-append">
 					<button class="btn add" id="addGear" data-bind="click: gearIncrement">
 						<i class="icon icon-plus"></i>
 					</button>
+					<span class="label label-success" data-bind="text: gear"></span>
 					<input type="number" class="counter input-mini" id="gear" name="gear" data-bind="value: gear" />
 					<button class="btn remove" id="removeGear" data-bind="click: gearDecrement">
 						<i class="icon icon-minus"></i>
 					</button>
 				</div>
 			</li>
-			<li class="alert row">
+			<li class="alert alert-info">
 				<label>
 					Attack
 				</label>
+				<span class="label label-success" data-bind="text: attack"></span>
 				<input type="number" class="input-mini" id="attack" name="attack" data-bind="value: attack" />
 			</li>
 		</ul>
